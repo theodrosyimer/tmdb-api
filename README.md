@@ -3,7 +3,7 @@
 ## Context
 
 Formation Assofac DWWM 2022-2023
-> Projet de site web pour le restaurant Chez Bella.
+> Projet : utiliser une API (-> TMDB API) pour créer une application qui affiche les informations d'un film recherché provenant de la base de données de TMDB.
 
 ## Usage
 
