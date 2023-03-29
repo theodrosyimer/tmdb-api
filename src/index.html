@@ -14,16 +14,46 @@
     <title>The Movie DataBase API</title>
   </head>
 
-  <body class="grid-center">
+  <body>
 
-    <div class="search-grid">
-      <div class="search-input-grid">
-        <label for="search">Enter a film title</label>
-        <input type="text"
-               name="search"
-               id="search">
+    <header>
+      <div class="header-grid">
+        <h1>Movie Finder</h1>
       </div>
-    </div>
+    </header>
+
+    <main>
+      <div class="main-grid">
+
+        <form method="get"
+              id="search-form"
+              class="form">
+
+          <div class="search-input-flex">
+            <!-- <label for="search">Enter a film title</label> -->
+            <input type="search"
+                   name="search"
+                   id="search"
+                   value=""
+                   placeholder="Enter a film title">
+            <button class="button">SEARCH</button>
+          </div>
+
+        </form>
+      </div>
+
+      <div class="app-grid"
+           id="app">
+
+      </div>
+
+    </main>
+
+    <footer>
+      <div class="footer">
+        <div>Copyright &copy; - All rights reserved.</div>
+      </div>
+    </footer>
 
   </body>
 
