@@ -24,6 +24,7 @@ export default defineConfig({
       },
     },
   },
+  envDir: '../',
   server: {
     open: `http://localhost:${PORT}/`,
   },
