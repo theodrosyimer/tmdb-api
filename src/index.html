@@ -7,7 +7,8 @@
           content="IE=edge">
     <meta name="viewport"
           content="width=device-width, initial-scale=1.0">
-    <link rel="icon" type="image/svg+xml" href="" />
+    <!-- <link rel="icon" type="image/svg+xml" href="" /> -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="style.css">
     <script type="module"
             src="index.js"></script>
@@ -17,40 +18,69 @@
   <body>
 
     <header>
-      <div class="header-grid">
-        <h1>Movie Finder</h1>
-      </div>
-    </header>
 
-    <main>
-      <div class="main-grid">
+      <div class="header-flex">
+
+        <div class="logo-nav-group-flex">
+          <a class="app-logo-flex">
+            <span class="app-icon">icon</span>
+            <span>APP NAME</span>
+          </a>
+          <nav data-navbar
+               class="navbar-flex">
+            <a href="./index.html?search=movie"
+               class="link">Home</a>
+            <a href="./index.html?search=tv"
+               class="link">Series</a>
+            <a href="./index.html?search=movie"
+               class="link">Films</a>
+          </nav>
+        </div>
 
         <form method="get"
               id="search-form"
               class="form">
 
           <div class="search-input-flex">
-            <!-- <label for="search">Enter a film title</label> -->
-            <input type="search"
+
+            <!-- <select name="sort-by">
+              <option value="popularity">Popularity</option>
+              <option value="latest">Latest</option>
+              <option value="top-rated">Top Rated</option>
+            </select>
+            <select name="genre">
+              <option value="genre">Genre</option>
+            </select> -->
+            <span class="icon fa-search"></span>
+            <input class="icon fa-search"
+                   type="search"
                    name="search"
                    id="search"
                    value=""
-                   placeholder="Enter a film title">
-            <button class="button">SEARCH</button>
+                   placeholder="Search by title, character, or genre">
+            <!-- <button class="button">SEARCH</button> -->
           </div>
-
         </form>
+
+        <div class="profile-icon icon fa-circle-user"></div>
+
       </div>
 
-      <div class="app-grid"
-           id="app">
+      <div id="slider"
+           class="slider-x"></div>
+    </header>
 
+    <main>
+      <div class="main-grid">
+
+        <div id="app"
+             class="app-grid"></div>
       </div>
 
     </main>
 
     <footer>
-      <div class="footer">
+      <div class="footer-grid">
         <div>Copyright &copy; - All rights reserved.</div>
       </div>
     </footer>
