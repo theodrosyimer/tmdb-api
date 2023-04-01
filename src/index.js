@@ -9,8 +9,8 @@ const inputElement = document.querySelector('input[name="search"]')
 const sliderElement = document.querySelector('#slider')
 
 
-let type = getParameterValue('search')
-let currentPage = getParameterValue('page')
+let type = getParameterValue('search') ?? 'movie'
+let currentPage = getParameterValue('page') ?? 'home'
 
 let userBrowserLanguage = getUserBrowserLanguage()
 
