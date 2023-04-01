@@ -1,24 +1,11 @@
-export const qs = (selector, parent = document) => parent.querySelector(selector)
-
-export const qsa = (selector, parent = document) => [...parent.querySelectorAll(selector)]
-
-export function addClasses(selector, classes, parent = document) {
-  if (!selector || (typeof selector !== 'string') || selector == null || !classes || !classes.length || classes == null) throw new Error(`
-  Need a selector, passed value: ${JSON.stringify(selector)}
-  Need a class or an array of classes, passed value: ${JSON.stringify(classes)}`)
-
-  if (Array.isArray(classes)) {
-    parent.querySelector(selector).classList.add(...classes)
-  }
-  if (typeof classes === 'string') {
-    parent.querySelector(selector).classList.add(classes)
-  }
-  if (selector instanceof HTMLElement) {
-    selector.classList.add(classes)
-  }
-
-}
-
+/**
+ *
+ * @param {DocumentEventMap} event
+ * @param {string} selector
+ * @param {(...args) => unknown} callback
+ * @param {{}} options
+ * @param {HTMLElement} parent
+ */
 export function addGlobalEventListener(
   event,
   selector,
@@ -35,6 +22,12 @@ export function addGlobalEventListener(
   )
 }
 
+/**
+ *
+ * @param {[]} elements
+ * @param {*} createElement
+ * @returns {HTMLElementTagNameMap[] | HTMLUnknownElement}
+ */
 export function batchCreateElement(elements, createElement) {
   let createdElements = []
 
@@ -43,6 +36,11 @@ export function batchCreateElement(elements, createElement) {
   return createdElements
 }
 
+/**
+ *
+ * @param {{tag: HTMLElementTagNameMap | HTMLUnknownElement, options: {}}} config
+ * @returns
+ */
 export function createElement({ tag, options = {} }) {
   const element = document.createElement(tag)
   Object.entries(options).forEach(([key, value]) => {
@@ -50,7 +48,6 @@ export function createElement({ tag, options = {} }) {
     if (key === 'class') {
       if (Array.isArray(value)) {
         element.classList.add(...value)
-
       } else { element.classList.add(value) }
     }
 
@@ -72,6 +69,11 @@ export function createElement({ tag, options = {} }) {
   return element
 }
 
+/**
+ *
+ * @param {HTMLElement} parent
+ * @param {HTMLElement} children
+ */
 export function appendChildren(parent, children) {
   children.forEach(child => parent.appendChild(child))
 }
@@ -80,20 +82,27 @@ export function appendChildren(parent, children) {
  *  * be careful interprets `+` as spaces
  * @see [URLSearchParams - Web APIs | MDN](https://developer.mozilla.org/en-US/docs/Web/API/URLSearchParams#preserving_plus_signs)
  * @param {string} url
- * @returns
+ * @returns {URLSearchParams}
 */
-export const getSearchParamsFromURL = (url = window.location.href) => new URL(url).searchParams
+export function getSearchParamsFromURL(url = window.location.href) {
+  return new URL(url).searchParams
+}
 
 /**
  *
- * @param {Array} params
+ * @param {string} name
  * @param {string} url
- * @returns
+ * @returns {URLSearchParams}
  */
-export const getParameterValue = (params, method = 'get', url = window.location.href) => getSearchParamsFromURL(url)[method](...params)
+export function getParameterValue(name, method = 'get', url = window.location.href) {
+  return getSearchParamsFromURL(url)[method](name)
+}
 
+export function getUserBrowserLanguage() {
+  return (navigator.languages && navigator.languages.length) ? navigator.languages[0] : navigator.language
+}
 
-export const isIOS = () => {
+export function isIOS() {
   return (
     (/iPad|iPhone|iPod/.test(navigator.platform) ||
       (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1)) && !window.MSStream
