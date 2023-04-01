@@ -23,47 +23,59 @@
 
         <div class="logo-nav-group-flex">
           <a class="app-logo-flex">
-            <span class="app-icon">icon</span>
+            <span class="app-icon">logo</span>
             <span>APP NAME</span>
           </a>
           <nav data-navbar
                class="navbar-flex">
-            <a href="./index.html?search=movie"
+            <a data-link="home"
+               href="./index.html?search=movie&page=home"
                class="link">Home</a>
-            <a href="./index.html?search=tv"
+            <a data-link="tv"
+               href="./index.html?search=tv&page=tv"
                class="link">Series</a>
-            <a href="./index.html?search=movie"
+            <a data-link="movie"
+               href="./index.html?search=movie&page=movie"
                class="link">Films</a>
           </nav>
         </div>
 
-        <form method="get"
-              id="search-form"
-              class="form">
+        <div class="form-account-group-flex">
 
-          <div class="search-input-flex">
+          <form method="get"
+                id="search-form"
+                class="form">
+            <div class="search-input-flex">
+              <span class="icon fa-search"></span>
+              <input type="search"
+                     name="search"
+                     id="search"
+                     value=""
+                     placeholder="Title, people, or genre">
+              <!-- <button class="button">SEARCH</button> -->
+            </div>
+          </form>
 
-            <!-- <select name="sort-by">
-              <option value="popularity">Popularity</option>
-              <option value="latest">Latest</option>
-              <option value="top-rated">Top Rated</option>
-            </select>
-            <select name="genre">
-              <option value="genre">Genre</option>
-            </select> -->
-            <span class="icon fa-search"></span>
-            <input class="icon fa-search"
-                   type="search"
-                   name="search"
-                   id="search"
-                   value=""
-                   placeholder="Search by title, character, or genre">
-            <!-- <button class="button">SEARCH</button> -->
-          </div>
-        </form>
+          <button>
+            <span class="grid profile-icon icon fa-circle-user"></span>
+          </button>
 
-        <div class="profile-icon icon fa-circle-user"></div>
+        </div>
 
+      </div>
+
+      <div id="sort-genres-group"
+           class="show sort-genres-group-flex">
+        <select data-sort
+                name="sort-by">
+          <option value="latest">Latest</option>
+          <option value="top-rated">Top Rated</option>
+          <option value="popularity">Popularity</option>
+        </select>
+        <select data-genres
+                name="genre">
+          <option value="genre">Genre</option>
+        </select>
       </div>
 
       <div id="slider"
