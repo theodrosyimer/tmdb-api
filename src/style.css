@@ -842,7 +842,7 @@ header {
   align-items: center;
   justify-items: center;
 
-  --gap: 0.4rem;
+  --gap: 1rem;
   border: 1px solid var(--clr-grey-900);
   padding: 0.6rem 1.2rem;
   border-radius: var(--border-radius-default);
