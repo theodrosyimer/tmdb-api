@@ -1,30 +1,46 @@
-import { ShowResults } from "./components/SearchResults.js"
-import { getParameterValue } from "./dom.js"
-import { getPopular, getTopRated, searchByTitle } from "./tmdb.js"
+import { render } from "./render.js"
+import { handleLinks, handleSelectGenresAndSortBy } from "./ui.js"
+import { getPopular, getTopRated, fetchGenresList, searchByTitle } from "./tmdb.js"
+import { getParameterValue, getUserBrowserLanguage } from "./utils/dom.js"
 
-const sliderElement = document.querySelector('#slider')
+const app = document.querySelector('#app')
 const form = document.querySelector('#search-form')
 const inputElement = document.querySelector('input[name="search"]')
-const app = document.querySelector('#app')
+const sliderElement = document.querySelector('#slider')
 
-let type = getParameterValue(['search'])
 
-Promise.all([ShowResults(sliderElement, { type, lang: 'fr-FR' }, getPopular), ShowResults(app, { type, lang: 'fr-FR' }, getTopRated)])
+let type = getParameterValue('search')
+let currentPage = getParameterValue('page')
+
+let userBrowserLanguage = getUserBrowserLanguage()
+
+// console.log(await fetchGenresList({ type }))
+
+Promise.all([
+  render(sliderElement, { type, lang: userBrowserLanguage }, getPopular),
+  render(app, { type, lang: userBrowserLanguage }, getTopRated),
+  handleLinks(currentPage),
+  handleSelectGenresAndSortBy(currentPage)]
+)
 
 form.addEventListener('submit', async (e) => {
   e.preventDefault()
   if (inputElement.value.length === 0) return
 
-  await ShowResults(app, { query: inputElement.value }, searchByTitle)
+  sliderElement.innerHTML = ''
+
+  await render(app, { query: inputElement.value }, searchByTitle)
 })
-
-
 
 inputElement.addEventListener('input', async (e) => {
-  let inputValue = e.target.value
+  let inputValue = e.target.value.trim()
 
   if (inputValue.length === 0) {
-    // app.innerHTML = ''
-    // await ShowResults(app, { lang: 'fr-FR' }, getTopRated)
+    Promise.all([
+      render(sliderElement, { type, lang: userBrowserLanguage }, getPopular),
+      render(app, { type, lang: userBrowserLanguage }, getTopRated),
+      handleLinks(currentPage),])
   }
 })
+
+
