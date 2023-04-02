@@ -1,6 +1,13 @@
 import { FilmCard } from "./FilmCard.js"
 
-export async function FilmCards(params, callbackAsync) {
+/**
+ *
+ * @param {*} params
+ * @param {*} callbackAsync
+ * @param {'poster' | 'backdrop'} imageType
+ * @returns
+ */
+export async function FilmCards(params, callbackAsync, imageType) {
   let { results } = await callbackAsync(params)
 
   let filmElements = ''
@@ -9,7 +16,7 @@ export async function FilmCards(params, callbackAsync) {
     if (film?.poster_path == null) return
     if (film?.backdrop_path == null) return
 
-    filmElements += FilmCard(film)
+    filmElements += FilmCard(film, imageType)
   })
 
   return filmElements
