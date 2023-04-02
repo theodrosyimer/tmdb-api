@@ -14,11 +14,11 @@ let currentPage = getParameterValue('page') ?? 'home'
 
 let userBrowserLanguage = getUserBrowserLanguage()
 
-// console.log(await fetchGenresList({ type }))
+// console.log(await fetchGenresList({ type, lang: userBrowserLanguage }))
 
 Promise.all([
-  render(sliderElement, { type, lang: userBrowserLanguage }, getPopular),
-  render(app, { type, lang: userBrowserLanguage }, getTopRated),
+  render(sliderElement, { type, lang: userBrowserLanguage }, getPopular, 'poster'),
+  render(app, { type, lang: userBrowserLanguage }, getTopRated, 'poster'),
   handleLinks(currentPage),
   handleSelectGenresAndSortBy(currentPage)]
 )
@@ -29,7 +29,7 @@ form.addEventListener('submit', async (e) => {
 
   sliderElement.innerHTML = ''
 
-  await render(app, { query: inputElement.value }, searchByTitle)
+  await render(app, { type, query: inputElement.value, lang: userBrowserLanguage }, searchByTitle)
 })
 
 inputElement.addEventListener('input', async (e) => {
@@ -37,9 +37,17 @@ inputElement.addEventListener('input', async (e) => {
 
   if (inputValue.length === 0) {
     Promise.all([
-      render(sliderElement, { type, lang: userBrowserLanguage }, getPopular),
-      render(app, { type, lang: userBrowserLanguage }, getTopRated),
+      render(sliderElement, { type, lang: userBrowserLanguage }, getPopular, 'poster'),
+      render(app, { type, lang: userBrowserLanguage }, getTopRated, 'poster'),
       handleLinks(currentPage),])
+  }
+})
+
+document.addEventListener('click', e => {
+  const dropdowns = [...document.querySelectorAll('#sort-genres-group .dropdown')]
+
+  if (!e.target.matches('#sort-genres-group .dropdown') && !e.target.matches('#sort-genres-group > button')) {
+    dropdowns.forEach(dropdown => dropdown.classList.remove('show'))
   }
 })
 
