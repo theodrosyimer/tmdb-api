@@ -1,12 +1,14 @@
 import { render } from "./render.js"
 import { handleLinks, handleSelectGenresAndSortBy } from "./ui.js"
-import { getPopular, getTopRated, fetchGenresList, searchByTitle } from "./tmdb.js"
+import { getPopular, getTopRated, fetchGenresList, searchByTitle, getUpcoming } from "./tmdb.js"
 import { getParameterValue, getUserBrowserLanguage } from "./utils/dom.js"
 
 const app = document.querySelector('#app')
 const form = document.querySelector('#search-form')
 const inputElement = document.querySelector('input[name="search"]')
-const sliderElement = document.querySelector('#slider')
+const sliderPopular = document.querySelector('#slider-popular')
+const sliderTopRated = document.querySelector('#slider-top')
+const sliderUpcoming = document.querySelector('#slider-upcoming')
 
 
 let type = getParameterValue('search') ?? 'movie'
@@ -17,8 +19,9 @@ let userBrowserLanguage = getUserBrowserLanguage()
 // console.log(await fetchGenresList({ type, lang: userBrowserLanguage }))
 
 Promise.all([
-  render(sliderElement, { type, lang: userBrowserLanguage }, getPopular, 'poster'),
-  render(app, { type, lang: userBrowserLanguage }, getTopRated, 'poster'),
+  render(sliderPopular, { type, lang: userBrowserLanguage }, getPopular, 'poster'),
+  render(sliderTopRated, { type, lang: userBrowserLanguage }, getTopRated, 'poster'),
+  render(sliderUpcoming, { type, lang: userBrowserLanguage }, getUpcoming, 'poster'),
   handleLinks(currentPage),
   handleSelectGenresAndSortBy(currentPage)]
 )
@@ -29,7 +32,7 @@ form.addEventListener('submit', async (e) => {
 
   sliderElement.innerHTML = ''
 
-  await render(app, { type, query: inputElement.value, lang: userBrowserLanguage }, searchByTitle)
+  await render(app, { type, query: inputElement.value, lang: userBrowserLanguage, }, searchByTitle, 'poster')
 })
 
 inputElement.addEventListener('input', async (e) => {

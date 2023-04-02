@@ -16,7 +16,7 @@ export const searchByID = async ({ id, type, lang }) => {
   return { data }
 }
 
-export const searchByTitle = async ({ query, type = 'movie', lang = 'fr-FR' }) => {
+export const searchByTitle = async ({ query, type, lang }) => {
   let response = await fetch(`${import.meta.env.VITE_BASE_URL}/search/${type}?api_key=${API_KEY}&query=${query}&language=${lang}`)
     .catch((e) => {
       if (!response.ok) {
@@ -30,7 +30,7 @@ export const searchByTitle = async ({ query, type = 'movie', lang = 'fr-FR' }) =
   return { page: pageCurrent, results, total_pages, total_results }
 }
 
-export const getTopRated = async ({ type = 'movie', lang = 'fr-FR', page = 1 }) => {
+export const getTopRated = async ({ type, lang, page = 1 }) => {
   let response = await fetch(`${import.meta.env.VITE_BASE_URL}/${type}/top_rated?api_key=${API_KEY}&language=${lang}&page=${page}`)
     .catch((e) => {
       if (!response.ok) {
@@ -44,7 +44,7 @@ export const getTopRated = async ({ type = 'movie', lang = 'fr-FR', page = 1 }) 
   return { page: pageCurrent, results, total_pages, total_results }
 }
 
-export const getPopular = async ({ type = 'movie', lang = 'fr-FR', page = 1 }) => {
+export const getPopular = async ({ type, lang, page = 1 }) => {
   let response = await fetch(`${import.meta.env.VITE_BASE_URL}/${type}/popular?api_key=${API_KEY}&language=${lang}&page=${page}`)
     .catch((e) => {
       if (!response.ok) {
@@ -58,7 +58,7 @@ export const getPopular = async ({ type = 'movie', lang = 'fr-FR', page = 1 }) =
   return { page: pageCurrent, results, total_pages, total_results }
 }
 
-export const getUpcoming = async ({ type = 'movie', lang = 'fr-FR', page = 1 }) => {
+export const getUpcoming = async ({ type, lang, page = 1 }) => {
   let response = await fetch(`${import.meta.env.VITE_BASE_URL}/${type}/upcoming?api_key=${API_KEY}&language=${lang}&page=${page}`)
     .catch((e) => {
       if (!response.ok) {
