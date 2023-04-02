@@ -1021,14 +1021,14 @@ main {
   --grid-columns: 1;
   grid-template-rows: 1fr auto;
   max-height: 14rem;
-  min-height: 11rem;
+  min-height: 10rem;
   position: absolute;
   z-index: 3;
   bottom: 0;
   left: 0;
   pointer-events: none;
   padding: 1rem;
-  /* opacity: 0; */
+  opacity: 0;
   transition: opacity 0.2s ease-in-out;
   background-color: var(--clr-white);
   border-radius: 0 0 var(--border-radius-default) var(--border-radius-default);

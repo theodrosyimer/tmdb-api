@@ -1,3 +1,5 @@
+// let API_KEY = import.meta.env.MODE === 'development' ? import.meta.env.VITE_API_KEY : process.env.API_KEY
+
 let API_KEY = import.meta.env.MODE === 'development' ? import.meta.env.VITE_API_KEY : import.meta.env.VITE_API_KEY
 
 export const searchByID = async ({ id, type, lang }) => {
