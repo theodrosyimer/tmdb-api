@@ -1,5 +1,8 @@
+let API_KEY = import.meta.env.MODE === 'development' ? import.meta.env.VITE_API_KEY : import.meta.env.API_KEY
+console.log(import.meta.env)
+
 export const searchByID = async ({ id, type, lang }) => {
-  let response = await fetch(`${import.meta.env.VITE_BASE_URL}/${type}/${id}?api_key=${import.meta.env.VITE_API_KEY}&append_to_response=videos,images,credits&include_image_language=${lang.replace(/-(\w+)/g, '')}&include_video_language=${lang.slice(0, 2)}&language=${lang}`)
+  let response = await fetch(`${import.meta.env.VITE_BASE_URL}/${type}/${id}?api_key=${API_KEY}&append_to_response=videos,images,credits&include_image_language=${lang.replace(/-(\w+)/g, '')}&include_video_language=${lang.slice(0, 2)}&language=${lang}`)
     .catch((e) => {
       if (!response.ok) {
         throw new Error(`Returned with a ${response.status} code`)
@@ -13,7 +16,7 @@ export const searchByID = async ({ id, type, lang }) => {
 }
 
 export const searchByTitle = async ({ query, type = 'movie', lang = 'fr-FR' }) => {
-  let response = await fetch(`${import.meta.env.VITE_BASE_URL}/search/${type}?api_key=${import.meta.env.VITE_API_KEY}&query=${query}&language=${lang}`)
+  let response = await fetch(`${import.meta.env.VITE_BASE_URL}/search/${type}?api_key=${API_KEY}&query=${query}&language=${lang}`)
     .catch((e) => {
       if (!response.ok) {
         throw new Error(`Returned with a ${response.status} code`)
@@ -27,7 +30,7 @@ export const searchByTitle = async ({ query, type = 'movie', lang = 'fr-FR' }) =
 }
 
 export const getTopRated = async ({ type = 'movie', page = 1, lang = 'fr-FR' }) => {
-  let response = await fetch(`${import.meta.env.VITE_BASE_URL}/${type}/top_rated?api_key=${import.meta.env.VITE_API_KEY}&language=${lang}&page=${page}`)
+  let response = await fetch(`${import.meta.env.VITE_BASE_URL}/${type}/top_rated?api_key=${API_KEY}&language=${lang}&page=${page}`)
     .catch((e) => {
       if (!response.ok) {
         throw new Error(`Returned with a ${response.status} code`)
@@ -41,7 +44,7 @@ export const getTopRated = async ({ type = 'movie', page = 1, lang = 'fr-FR' }) 
 }
 
 export const getPopular = async ({ type = 'movie', page = 1, lang = 'fr-FR' }) => {
-  let response = await fetch(`${import.meta.env.VITE_BASE_URL}/${type}/popular?api_key=${import.meta.env.VITE_API_KEY}&language=${lang}&page=${page}`)
+  let response = await fetch(`${import.meta.env.VITE_BASE_URL}/${type}/popular?api_key=${API_KEY}&language=${lang}&page=${page}`)
     .catch((e) => {
       if (!response.ok) {
         throw new Error(`Returned with a ${response.status} code`)
@@ -55,7 +58,7 @@ export const getPopular = async ({ type = 'movie', page = 1, lang = 'fr-FR' }) =
 }
 
 export const getUpcoming = async ({ type = 'movie', page = 1, lang = 'fr-FR' }) => {
-  let response = await fetch(`${import.meta.env.VITE_BASE_URL}/${type}/upcoming?api_key=${import.meta.env.VITE_API_KEY}&language=${lang}&page=${page}`)
+  let response = await fetch(`${import.meta.env.VITE_BASE_URL}/${type}/upcoming?api_key=${API_KEY}&language=${lang}&page=${page}`)
     .catch((e) => {
       if (!response.ok) {
         throw new Error(`Returned with a ${response.status} code`)
@@ -75,7 +78,7 @@ export const getUpcoming = async ({ type = 'movie', page = 1, lang = 'fr-FR' }) 
 }
 
 export const fetchGenresList = async ({ type = 'movie', lang = 'fr-FR' }) => {
-  let response = await fetch(`${import.meta.env.VITE_BASE_URL}/genre/${type}/list?api_key=${import.meta.env.VITE_API_KEY}&language=${lang}`)
+  let response = await fetch(`${import.meta.env.VITE_BASE_URL}/genre/${type}/list?api_key=${API_KEY}&language=${lang}`)
     .catch((e) => {
       if (!response.ok) {
         throw new Error(`Returned with a ${response.status} code`)
