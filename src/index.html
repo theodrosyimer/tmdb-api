@@ -46,7 +46,7 @@
                 id="search-form"
                 class="form">
             <div class="search-input-flex">
-              <span class="icon fa-search"></span>
+              <span class="icon i-search"></span>
               <input type="search"
                      name="search"
                      id="search"
@@ -57,7 +57,7 @@
           </form>
 
           <button>
-            <span class="grid profile-icon icon fa-circle-user"></span>
+            <span class="grid profile-icon icon i-circle-user"></span>
           </button>
 
         </div>
@@ -66,16 +66,18 @@
 
       <div id="sort-genres-group"
            class="show sort-genres-group-flex">
-        <select data-sort
-                name="sort-by">
-          <option value="latest">Latest</option>
-          <option value="top-rated">Top Rated</option>
-          <option value="popularity">Popularity</option>
-        </select>
-        <select data-genres
-                name="genre">
-          <option value="genre">Genre</option>
-        </select>
+        <button data-action="sort"
+                class="button icon i-chevron-down">
+          <div class="dropdown">TODO</div>
+          Sort by
+        </button>
+
+        <button data-action="genres"
+                class="button icon i-chevron-down">
+          <div class="dropdown">TODO</div>
+          Genres
+        </button>
+
       </div>
 
       <div id="slider"
