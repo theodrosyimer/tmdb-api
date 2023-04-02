@@ -1,5 +1,4 @@
 let API_KEY = import.meta.env.MODE === 'development' ? import.meta.env.VITE_API_KEY : import.meta.env.API_KEY
-console.log(import.meta.env)
 
 export const searchByID = async ({ id, type, lang }) => {
   let response = await fetch(`${import.meta.env.VITE_BASE_URL}/${type}/${id}?api_key=${API_KEY}&append_to_response=videos,images,credits&include_image_language=${lang.replace(/-(\w+)/g, '')}&include_video_language=${lang.slice(0, 2)}&language=${lang}`)
@@ -29,7 +28,7 @@ export const searchByTitle = async ({ query, type = 'movie', lang = 'fr-FR' }) =
   return { page: pageCurrent, results, total_pages, total_results }
 }
 
-export const getTopRated = async ({ type = 'movie', page = 1, lang = 'fr-FR' }) => {
+export const getTopRated = async ({ type = 'movie', lang = 'fr-FR', page = 1 }) => {
   let response = await fetch(`${import.meta.env.VITE_BASE_URL}/${type}/top_rated?api_key=${API_KEY}&language=${lang}&page=${page}`)
     .catch((e) => {
       if (!response.ok) {
@@ -43,7 +42,7 @@ export const getTopRated = async ({ type = 'movie', page = 1, lang = 'fr-FR' }) 
   return { page: pageCurrent, results, total_pages, total_results }
 }
 
-export const getPopular = async ({ type = 'movie', page = 1, lang = 'fr-FR' }) => {
+export const getPopular = async ({ type = 'movie', lang = 'fr-FR', page = 1 }) => {
   let response = await fetch(`${import.meta.env.VITE_BASE_URL}/${type}/popular?api_key=${API_KEY}&language=${lang}&page=${page}`)
     .catch((e) => {
       if (!response.ok) {
@@ -57,7 +56,7 @@ export const getPopular = async ({ type = 'movie', page = 1, lang = 'fr-FR' }) =
   return { page: pageCurrent, results, total_pages, total_results }
 }
 
-export const getUpcoming = async ({ type = 'movie', page = 1, lang = 'fr-FR' }) => {
+export const getUpcoming = async ({ type = 'movie', lang = 'fr-FR', page = 1 }) => {
   let response = await fetch(`${import.meta.env.VITE_BASE_URL}/${type}/upcoming?api_key=${API_KEY}&language=${lang}&page=${page}`)
     .catch((e) => {
       if (!response.ok) {
@@ -77,7 +76,7 @@ export const getUpcoming = async ({ type = 'movie', page = 1, lang = 'fr-FR' }) 
   }
 }
 
-export const fetchGenresList = async ({ type = 'movie', lang = 'fr-FR' }) => {
+export const fetchGenresList = async ({ type, lang }) => {
   let response = await fetch(`${import.meta.env.VITE_BASE_URL}/genre/${type}/list?api_key=${API_KEY}&language=${lang}`)
     .catch((e) => {
       if (!response.ok) {
@@ -92,7 +91,7 @@ export const fetchGenresList = async ({ type = 'movie', lang = 'fr-FR' }) => {
 }
 
 
-export const fetchTvAndMovieGenresList = async (lang = 'fr-FR') => {
+export const fetchTvAndMovieGenresList = async (lang) => {
   const [movieGenresList, tvGenresList] = await Promise.all([fetchGenresList({ lang }), fetchGenresList({ type: 'tv', lang })])
   console.log(movieGenresList, tvGenresList)
 }
