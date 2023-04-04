@@ -838,10 +838,6 @@ button[data-action]:has(+ button[data-action]) {
   --gap: 1rem;
 }
 
-.slider-group-grid:has(.slider-x:not(:has(> :first-child))) > h3 {
-  display: none;
-}
-
 .slider-category-flex {
   font-size: var(--fs-xl);
   font-weight: var(--fw-bold);
