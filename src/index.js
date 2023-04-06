@@ -79,7 +79,8 @@ function App() {
       render(sliderTopRated, { type, lang: userBrowserLanguage }, getTopRated, 'poster'),
       render(sliderUpcoming, { type, lang: userBrowserLanguage }, getUpcoming, 'poster'),
       handleLinks(currentPage),
-      handleSelectGenresAndSortBy(currentPage)]
+      handleSelectGenresAndSortBy(currentPage)
+    ]
     )
   }
 }

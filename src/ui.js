@@ -22,12 +22,11 @@ export function handleSelectGenresAndSortBy(page) {
         currentDropdown.classList.remove('show')
         return
       }
+
       dropdowns.forEach(dropdown => dropdown.classList.remove('show'))
 
       currentDropdown.classList.add('show')
     }
-
-
   })
 }
 
