@@ -16,8 +16,7 @@ export async function render(parentElement, params, callbackAsync, imageType) {
 
   parentElement.addEventListener('click', async e => {
     if (e.target.offsetParent.offsetParent.matches('div[data-id]')) {
-      let { data } = await searchByID({ id: e.target.offsetParent.offsetParent.dataset.id, type, lang })
-      console.log(data)
+      document.querySelector('.main-grid').innerHTML = await FilmDetails({ id: e.target.offsetParent.offsetParent.dataset.id, type, lang, imageType })
     }
   })
 }
