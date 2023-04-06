@@ -85,7 +85,9 @@
       <div class="main-grid">
 
         <!-- SLIDERS -->
-        <div data-sliders
+
+        <div id="sliders"
+             data-sliders
              class="sliders-grid">
 
           <div data-slider-group
@@ -122,7 +124,32 @@
 
         <!-- APP -->
         <div id="app"
-             class="app-grid"></div>
+             class="app-grid">
+
+          <!-- FILM DETAILS -->
+          <!-- <div data-id=${id}
+               class="film-details">
+            <div class="film-backdrop ${imageType}-aspect-ratio">
+              <img src="https://image.tmdb.org/t/p/w1280${imageType === 'poster' ? poster_path : backdrop_path}"
+                   alt="${title}'s poster">
+            </div>
+            <div class="film-infos-grid">
+              <div class="film-title-flex">
+                <h3>${title}</h3>
+                <span class="film-note">${vote_average.toFixed(1)}</span>
+              </div>
+              <div class="film-buttons-flex">
+                <button class="button film-button icon i-star"></button>
+                <button class="button film-button icon i-plus"></button>
+                <button class="button film-button icon i-ellipsis"></button>
+              </div>
+              <p class="film-overview">${overviewShorter}...<span class="see-more">See
+                  more</span>
+              </p>
+            </div>
+          </div> -->
+
+        </div>
       </div>
 
     </main>

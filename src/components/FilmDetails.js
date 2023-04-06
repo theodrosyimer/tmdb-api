@@ -8,7 +8,7 @@ export async function FilmDetails({ id, type, lang }) {
 
   // TODO: use `data`
 
-  // console.log(data)
+  console.log(data)
 
-  return data
+  return ``
 }

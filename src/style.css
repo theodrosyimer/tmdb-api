@@ -998,6 +998,7 @@ main {
   --grid-column-min-width: 50rem;
 }
 
+/* FILM CARD */
 .film-card {
   position: relative;
 
@@ -1017,7 +1018,8 @@ main {
   transform: scale(1.165);
 }
 
-.film-poster {
+.film-poster,
+.film-backdrop {
   max-width: 100%;
   cursor: pointer;
   filter: brightness(100%);
@@ -1028,7 +1030,8 @@ main {
   filter: brightness(40%);
 }
 
-.film-poster img {
+.film-poster img,
+.film-backdrop img {
   border-radius: var(--border-radius-default);
   object-fit: cover;
   width: 100%;
@@ -1103,6 +1106,16 @@ main {
 
   -ms-word-break: break-word;
   word-break: break-word;
+}
+
+/* FILM DETAILS */
+.film-details-grid {
+
+}
+
+.film-backdrop {
+  display: none;
+  background: linear-gradient(to right, hsl(0deg 0 0 / 20%), transparent);
 }
 
 .film-title-flex {
