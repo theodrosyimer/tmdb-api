@@ -50,9 +50,9 @@ export function FilmCard({ adult,
   let overviewShorter = overview.split(' ').slice(0, 15).join(' ')
 
   return `
-  <div data-id=${id} class="film-card ${imageType}-aspect-ratio">
-      <div class="film-poster">
-        <img src="https://image.tmdb.org/t/p/w600_and_h900_bestv2${imageType === 'poster' ? poster_path : backdrop_path}"
+  <div data-id=${id} class="film-card">
+      <div class="film-poster ${imageType}-aspect-ratio">
+        <img src="https://image.tmdb.org/t/p/w780${imageType === 'poster' ? poster_path : backdrop_path}"
               alt="${title}'s poster">
       </div>
       <div class="film-infos-grid">
