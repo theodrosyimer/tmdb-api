@@ -1114,7 +1114,7 @@ main {
 }
 
 .film-backdrop {
-  display: none;
+
   background: linear-gradient(to right, hsl(0deg 0 0 / 20%), transparent);
 }
 

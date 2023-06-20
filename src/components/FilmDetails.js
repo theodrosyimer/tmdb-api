@@ -54,5 +54,5 @@ export async function FilmDetails({ id, type, lang }) {
       </p>
     </div>
   </div>
-          `
+`
 }
