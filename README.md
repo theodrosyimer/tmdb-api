@@ -5,6 +5,8 @@
 Formation Assofac DWWM 2022-2023
 > Projet : utiliser une API (-> TMDB API) pour créer une application qui affiche les informations d'un film recherché provenant de la base de données de TMDB.
 
+Déployment du site : [tmdb-site](https://tmdb-api-git-dev-theodrosyimer.vercel.app/)
+
 ## Usage
 
 **Install**
