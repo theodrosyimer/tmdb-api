@@ -8,7 +8,7 @@
     <meta name="viewport"
           content="width=device-width, initial-scale=1.0">
     <!-- <link rel="icon" type="image/svg+xml" href="" /> -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" >
     <link rel="stylesheet" href="style.css">
     <script type="module"
             src="index.js"></script>
@@ -19,83 +19,137 @@
 
     <header>
 
-      <div class="header-flex">
+      <div class="header-grid">
 
-        <div class="logo-nav-group-flex">
-          <a class="app-logo-flex">
-            <span class="app-icon">logo</span>
-            <span>APP NAME</span>
-          </a>
-          <nav data-navbar
-               class="navbar-flex">
-            <a data-link="home"
-               href="./index.html?search=movie&page=home"
-               class="link">Home</a>
-            <a data-link="tv"
-               href="./index.html?search=tv&page=tv"
-               class="link">Series</a>
-            <a data-link="movie"
-               href="./index.html?search=movie&page=movie"
-               class="link">Films</a>
-          </nav>
+        <!-- NAV GROUP -->
+        <div class="nav-group-flex">
+          <div class="logo-nav-group-flex">
+            <a class="app-logo-flex">
+              <span class="app-icon">logo</span>
+              <span>APP NAME</span>
+            </a>
+            <nav data-navbar
+                 class="navbar-flex">
+              <a data-link="home"
+                 href="./index.html?search=movie&page=home"
+                 class="link">Home</a>
+              <a data-link="tv"
+                 href="./index.html?search=tv&page=tv"
+                 class="link">Series</a>
+              <a data-link="movie"
+                 href="./index.html?search=movie&page=movie"
+                 class="link">Films</a>
+            </nav>
+          </div>
+
+          <div class="form-account-group-flex">
+            <form method="get"
+                  id="search-form"
+                  class="form">
+              <div class="search-input-flex">
+                <span class="icon i-search"></span>
+                <input type="search"
+                       name="search"
+                       id="search"
+                       value=""
+                       placeholder="Title, people, or genre">
+                <!-- <button class="button">SEARCH</button> -->
+              </div>
+            </form>
+            <button>
+              <span class="grid profile-icon icon i-circle-user"></span>
+            </button>
+          </div>
         </div>
 
-        <div class="form-account-group-flex">
-
-          <form method="get"
-                id="search-form"
-                class="form">
-            <div class="search-input-flex">
-              <span class="icon i-search"></span>
-              <input type="search"
-                     name="search"
-                     id="search"
-                     value=""
-                     placeholder="Title, people, or genre">
-              <!-- <button class="button">SEARCH</button> -->
-            </div>
-          </form>
-
-          <button>
-            <span class="grid profile-icon icon i-circle-user"></span>
+        <!-- SORT & GENRES -->
+        <div id="sort-genres-group"
+             class="sort-genres-group-flex">
+          <button data-action="sort"
+                  class="button icon i-chevron-down">
+            <div class="dropdown">TODO</div>
+            Sort by
           </button>
-
+          <button data-action="genres"
+                  class="button icon i-chevron-down">
+            <div class="dropdown">TODO</div>
+            Genres
+          </button>
         </div>
-
       </div>
 
-      <div id="sort-genres-group"
-           class="show sort-genres-group-flex">
-        <button data-action="sort"
-                class="button icon i-chevron-down">
-          <div class="dropdown">TODO</div>
-          Sort by
-        </button>
-
-        <button data-action="genres"
-                class="button icon i-chevron-down">
-          <div class="dropdown">TODO</div>
-          Genres
-        </button>
-
-      </div>
-
-      <!-- <h3>Upcoming</h3> -->
-      <div id="slider-upcoming"
-           class="slider-x"></div>
-      <!-- <h3>Popular</h3> -->
-      <div id="slider-popular"
-           class="slider-x"></div>
-      <!-- <h3>Top Rated</h3> -->
-      <div id="slider-top"
-           class="slider-x"></div>
     </header>
 
     <main>
+
       <div class="main-grid">
 
+        <!-- SLIDERS -->
+
+        <div id="sliders"
+             data-sliders
+             class="sliders-grid">
+
+          <div data-slider-group
+               class="slider-group-grid">
+            <h3 class="slider-category-flex">Upcoming <span
+                    class="see-more icon i-chevron-right">See more</span>
+            </h3>
+            <div id="slider-upcoming"
+                 class="slider-x">
+            </div>
+          </div>
+
+          <div data-slider-group
+               class="slider-group-grid">
+            <h3 class="slider-category-flex">Top Rated <span
+                    class="see-more icon i-chevron-right">See more</span>
+            </h3>
+            <div id="slider-top"
+                 class="slider-x">
+            </div>
+          </div>
+
+          <div data-slider-group
+               class="slider-group-grid">
+            <h3 class="slider-category-flex">Popular <span
+                    class="see-more icon i-chevron-right">See more</span>
+            </h3>
+            <div id="slider-popular"
+                 class="slider-x">
+            </div>
+          </div>
+
+        </div>
+
+        <!-- APP -->
         <div id="app"
-             class="app-grid"></div>
+             class="app-grid">
+
+          <!-- FILM DETAILS -->
+          <!-- <div data-id=${id}
+               class="film-details">
+            <div class="film-backdrop ${imageType}-aspect-ratio">
+              <img src="https://image.tmdb.org/t/p/w1280${imageType === 'poster' ? poster_path : backdrop_path}"
+                   alt="${title}'s poster">
+            </div>
+            <div class="film-infos-grid">
+              <div class="film-title-flex">
+                <h3>${title}</h3>
+                <span class="film-note">${vote_average.toFixed(1)}</span>
+              </div>
+              <div class="film-buttons-flex">
+                <button class="button film-button icon i-star"></button>
+                <button class="button film-button icon i-plus"></button>
+                <button class="button film-button icon i-ellipsis"></button>
+              </div>
+              <p class="film-overview">${overviewShorter}...<span class="see-more">See
+                  more</span>
+              </p>
+            </div>
+          </div> -->
+
+        </div>
       </div>
 
     </main>

@@ -22,13 +22,26 @@ export function handleSelectGenresAndSortBy(page) {
         currentDropdown.classList.remove('show')
         return
       }
+
       dropdowns.forEach(dropdown => dropdown.classList.remove('show'))
 
       currentDropdown.classList.add('show')
     }
-
-
   })
+}
+
+export function handleSliders() {
+  const sliders = document.querySelector('[data-sliders]')
+
+  if (sliders.classList.contains('hide')) {
+    sliders.classList.remove('hide')
+    sliders.querySelectorAll('h3').forEach(h => h.classList.remove('hide'))
+    return
+  }
+
+  sliders.classList.add('hide')
+  console.log(sliders.querySelectorAll('h3'))
+  sliders.querySelectorAll('h3').forEach(h => h.classList.add('hide'))
 }
 
 export function handleCardBtns() {

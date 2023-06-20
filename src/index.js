@@ -1,5 +1,5 @@
 import { render } from "./render.js"
-import { handleLinks, handleSelectGenresAndSortBy } from "./ui.js"
+import { handleLinks, handleSelectGenresAndSortBy, handleSliders } from "./ui.js"
 import { getPopular, getTopRated, fetchGenresList, searchByTitle, getUpcoming } from "./tmdb.js"
 import { getParameterValue, getUserBrowserLanguage } from "./utils/dom.js"
 
@@ -9,6 +9,8 @@ const inputElement = document.querySelector('input[name="search"]')
 const sliderPopular = document.querySelector('#slider-popular')
 const sliderTopRated = document.querySelector('#slider-top')
 const sliderUpcoming = document.querySelector('#slider-upcoming')
+const sliderGroups = [...document.querySelectorAll('[data-slider-group]')]
+const sliders = document.querySelector('[data-sliders]')
 
 
 let type = getParameterValue('search') ?? 'movie'
@@ -18,19 +20,13 @@ let userBrowserLanguage = getUserBrowserLanguage()
 
 // console.log(await fetchGenresList({ type, lang: userBrowserLanguage }))
 
-Promise.all([
-  render(sliderPopular, { type, lang: userBrowserLanguage }, getPopular, 'poster'),
-  render(sliderTopRated, { type, lang: userBrowserLanguage }, getTopRated, 'poster'),
-  render(sliderUpcoming, { type, lang: userBrowserLanguage }, getUpcoming, 'poster'),
-  handleLinks(currentPage),
-  handleSelectGenresAndSortBy(currentPage)]
-)
+App()
 
 form.addEventListener('submit', async (e) => {
   e.preventDefault()
   if (inputElement.value.length === 0) return
 
-  sliderElement.innerHTML = ''
+  handleSliders()
 
   await render(app, { type, query: inputElement.value, lang: userBrowserLanguage, }, searchByTitle, 'poster')
 })
@@ -39,10 +35,8 @@ inputElement.addEventListener('input', async (e) => {
   let inputValue = e.target.value.trim()
 
   if (inputValue.length === 0) {
-    Promise.all([
-      render(sliderElement, { type, lang: userBrowserLanguage }, getPopular, 'poster'),
-      render(app, { type, lang: userBrowserLanguage }, getTopRated, 'poster'),
-      handleLinks(currentPage),])
+    handleSliders()
+    App()
   }
 })
 
@@ -55,3 +49,38 @@ document.addEventListener('click', e => {
 })
 
 
+function App() {
+  if (currentPage === 'tv') {
+    sliderTopRated.parentElement.classList.add('hide')
+    sliderUpcoming.parentElement.classList.add('hide')
+    Promise.all([
+      render(sliderPopular, { type, lang: userBrowserLanguage }, getPopular, 'poster'),
+      render(app, { type, lang: userBrowserLanguage }, getTopRated, 'poster'),
+      handleLinks(currentPage),
+      handleSelectGenresAndSortBy(currentPage)]
+    )
+  }
+
+  if (currentPage === 'movie') {
+    sliderPopular.parentElement.classList.add('hide')
+    sliderTopRated.parentElement.classList.add('hide')
+    Promise.all([
+      render(sliderUpcoming, { type, lang: userBrowserLanguage }, getUpcoming, 'poster'),
+      // render(sliderPopular, { type, lang: userBrowserLanguage }, getPopular, 'poster'),
+      render(app, { type, lang: userBrowserLanguage }, getTopRated, 'poster'),
+      handleLinks(currentPage),
+      handleSelectGenresAndSortBy(currentPage)]
+    )
+  }
+
+  if (currentPage === 'home') {
+    Promise.all([
+      render(sliderPopular, { type, lang: userBrowserLanguage }, getPopular, 'poster'),
+      render(sliderTopRated, { type, lang: userBrowserLanguage }, getTopRated, 'poster'),
+      render(sliderUpcoming, { type, lang: userBrowserLanguage }, getUpcoming, 'poster'),
+      handleLinks(currentPage),
+      handleSelectGenresAndSortBy(currentPage)
+    ]
+    )
+  }
+}
