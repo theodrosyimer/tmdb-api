@@ -1,6 +1,4 @@
-// let API_KEY = import.meta.env.MODE === 'development' ? import.meta.env.VITE_API_KEY : process.env.API_KEY
-
-let API_KEY = import.meta.env.MODE === 'development' ? import.meta.env.VITE_API_KEY : import.meta.env.VITE_API_KEY
+let API_KEY = import.meta.env.MODE === 'development' ? import.meta.env.VITE_API_KEY : process.env.API_KEY
 
 export const searchByID = async ({ id, type, lang }) => {
   let response = await fetch(`${import.meta.env.VITE_BASE_URL}/${type}/${id}?api_key=${API_KEY}&append_to_response=videos,images,credits&include_image_language=${lang.replace(/-(\w+)/g, '')}&include_video_language=${lang.slice(0, 2)}&language=${lang}`)
