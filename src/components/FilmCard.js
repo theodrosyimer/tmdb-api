@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 /* eslint-disable camelcase */
 /**
  * The TMDB API response.
@@ -52,7 +53,8 @@ export function FilmCard(
     vote_count,
   } = results
 ) {
-  const overviewShorter = overview.split(' ').slice(0, 15).join(' ')
+  const overviewShorter = overview.split(' ').slice(0, 15)
+    .join(' ')
 
   return `
   <div data-id=${id} class="film-card">
