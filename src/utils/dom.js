@@ -29,7 +29,7 @@ export function addGlobalEventListener(
  * @returns {HTMLElementTagNameMap[] | HTMLUnknownElement}
  */
 export function batchCreateElement(elements, createElement) {
-  let createdElements = []
+  const createdElements = []
 
   elements.forEach(element => createdElements.push(createElement(element)))
 
@@ -44,11 +44,12 @@ export function batchCreateElement(elements, createElement) {
 export function createElement({ tag, options = {} }) {
   const element = document.createElement(tag)
   Object.entries(options).forEach(([key, value]) => {
-
     if (key === 'class') {
       if (Array.isArray(value)) {
         element.classList.add(...value)
-      } else { element.classList.add(value) }
+      } else {
+        element.classList.add(value)
+      }
     }
 
     if (key === 'dataset') {
@@ -83,7 +84,7 @@ export function appendChildren(parent, children) {
  * @see [URLSearchParams - Web APIs | MDN](https://developer.mozilla.org/en-US/docs/Web/API/URLSearchParams#preserving_plus_signs)
  * @param {string} url
  * @returns {URLSearchParams}
-*/
+ */
 export function getSearchParamsFromURL(url = window.location.href) {
   return new URL(url).searchParams
 }
@@ -94,17 +95,24 @@ export function getSearchParamsFromURL(url = window.location.href) {
  * @param {string} url
  * @returns {URLSearchParams}
  */
-export function getParameterValue(name, method = 'get', url = window.location.href) {
+export function getParameterValue(
+  name,
+  method = 'get',
+  url = window.location.href
+) {
   return getSearchParamsFromURL(url)[method](name)
 }
 
 export function getUserBrowserLanguage() {
-  return (navigator.languages && navigator.languages.length) ? navigator.languages[0] : navigator.language
+  return navigator.languages && navigator.languages.length
+    ? navigator.languages[0]
+    : navigator.language
 }
 
 export function isIOS() {
   return (
     (/iPad|iPhone|iPod/.test(navigator.platform) ||
-      (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1)) && !window.MSStream
+      (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1)) &&
+    !window.MSStream
   )
 }

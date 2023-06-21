@@ -1,4 +1,4 @@
-import { FilmCard } from "./FilmCard.js"
+import { FilmCard } from './FilmCard.js'
 
 /**
  *
@@ -8,7 +8,9 @@ import { FilmCard } from "./FilmCard.js"
  * @returns
  */
 export async function FilmCards(params, callbackAsync, imageType) {
-  let { results } = await callbackAsync(params)
+  const { results } = await callbackAsync(params).catch(e => {
+    console.error(e.stack)
+  })
 
   let filmElements = ''
 
@@ -16,7 +18,7 @@ export async function FilmCards(params, callbackAsync, imageType) {
     if (film?.poster_path == null) return
     if (film?.backdrop_path == null) return
 
-    filmElements += FilmCard(film, imageType)
+    filmElements += FilmCard(imageType, film)
   })
 
   return filmElements

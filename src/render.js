@@ -1,5 +1,6 @@
-import { FilmCards } from "./components/FilmCards.js"
-import { FilmDetails } from "./components/FilmDetails.js"
+/* eslint-disable no-unused-vars */
+import { FilmCards } from './components/FilmCards.js'
+import { FilmDetails } from './components/FilmDetails.js'
 
 /**
  *
@@ -19,7 +20,13 @@ export async function render(parentElement, params, callbackAsync, imageType) {
     if (currentFilm == null) return
 
     document.querySelector('.main-grid').innerHTML = ''
-    document.querySelector('.main-grid').innerHTML = await FilmDetails({ id: currentFilm.dataset.id, type, lang, imageType })
-
+    document.querySelector('.main-grid').innerHTML = await FilmDetails({
+      id: currentFilm.dataset.id,
+      type,
+      lang,
+      imageType,
+    }).catch(error => {
+      console.error(error.stack)
+    })
   })
 }

@@ -1,3 +1,7 @@
-export function convertMinutesToHoursAndMinutes(n) {
-  return `${((n / 60) >> 0)}h${(n % 60) < 10 ? '0' + (n % 60) : (n % 60)}`
+/* eslint-disable prettier/prettier */
+export function convertMinutesToHoursAndMinutes(minutes) {
+  return `${Math.trunc(minutes / 60)}h${minutes % 60 < 10
+    ? `0${minutes % 60}`
+    : minutes % 60
+    }`
 }

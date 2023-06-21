@@ -1,3 +1,4 @@
+/* eslint-disable camelcase */
 /**
  * The TMDB API response.
  * @typedef {Object} TMDBResponse
@@ -32,27 +33,32 @@
  * @param {'poster' | 'backdrop'} imageType
  * @returns
  */
-export function FilmCard({ adult,
-  backdrop_path,
-  genre_ids,
-  id,
-  original_language,
-  original_title,
-  overview,
-  popularity,
-  poster_path,
-  release_date,
-  title,
-  video,
-  vote_average,
-  vote_count } = results, imageType) {
-
-  let overviewShorter = overview.split(' ').slice(0, 15).join(' ')
+export function FilmCard(
+  imageType,
+  {
+    adult,
+    backdrop_path,
+    genre_ids,
+    id,
+    original_language,
+    original_title,
+    overview,
+    popularity,
+    poster_path,
+    release_date,
+    title,
+    video,
+    vote_average,
+    vote_count,
+  } = results
+) {
+  const overviewShorter = overview.split(' ').slice(0, 15).join(' ')
 
   return `
   <div data-id=${id} class="film-card">
       <div class="film-poster ${imageType}-aspect-ratio">
-        <img src="https://image.tmdb.org/t/p/w780${imageType === 'poster' ? poster_path : backdrop_path}"
+        <img src="https://image.tmdb.org/t/p/w780${imageType === 'poster' ? poster_path : backdrop_path
+    }"
               alt="${title}'s poster">
       </div>
       <div class="film-infos-grid">

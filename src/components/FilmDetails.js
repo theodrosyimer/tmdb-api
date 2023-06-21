@@ -1,11 +1,20 @@
-import { searchByID } from "../tmdb.js"
+/* eslint-disable camelcase */
+/* eslint-disable no-unused-vars */
+import { searchByID } from '../tmdb.js'
 
 export async function FilmDetails({ id, type, lang }) {
   // console.log(id)
-  const { data } = await searchByID({ id, type, lang })
+  const { data } = await searchByID({
+    id,
+    type,
+    lang,
+  }).catch(e => {
+    console.error(e.stack)
+  })
 
   // console.log(data)
-  const { adult,
+  const {
+    adult,
     backdrop_path,
     belongs_to_collection,
     budget,
@@ -30,7 +39,7 @@ export async function FilmDetails({ id, type, lang }) {
     vote_count,
     videos,
     images,
-    credits
+    credits,
   } = data
 
   return `

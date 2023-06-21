@@ -1,4 +1,3 @@
 export function Slider() {
-
-  return ``
+  return ''
 }
