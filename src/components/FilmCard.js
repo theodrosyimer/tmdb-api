@@ -29,8 +29,8 @@
 
 /**
  *
- * @param {Film[]} results - an array of Film from TMDB API
  * @param {'poster' | 'backdrop'} imageType
+ * @param {Film} results - an array of Film from TMDB API
  * @returns
  */
 export function FilmCard(
